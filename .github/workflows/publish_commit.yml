@@ -16,7 +16,7 @@ env:
 jobs:
   publish:
     # Flow: setup → find bottles from CI run → upload to release → merge formula → push → cleanup
-    if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
+    if: github.event.pull_request.head.repo.full_name == github.repository && contains(github.event.pull_request.labels.*.name, 'pr-pull')
     runs-on: ubuntu-22.04
     permissions:
       actions: read
